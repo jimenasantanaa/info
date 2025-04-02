@@ -1,6 +1,2 @@
 echo "Proyecto del grupo XX de Informatica 1 (2024-25-Q2)" >> README.md
 echo "Nombre de la herramienta" >> README.md
-git init
-git add README.md
-git commit -m "Commit inicial del Proyecto del grupo XX"
-git branch -M main
