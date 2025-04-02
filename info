@@ -4,4 +4,5 @@ git init
 git add README.md
 git commit -m "Commit inicial del Proyecto del grupo XX"
 git branch -M main
-git remote add origin “URL del repositorio remoto”
+git remote add origin “https://github.com/jimenasantanaa/info.git del repositorio remoto”
+git push -u origin main
