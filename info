@@ -1,2 +1,7 @@
 echo "Proyecto del grupo 5 de Informatica 1 (2024-25-Q2)" >> README.md
 echo "Version 1" >> README.md
+git init
+git add README.md
+git commit -m "Commit inicial del Proyecto del grupo XX"
+git branch -M main
+git remote add origin “URL del repositorio remoto”
