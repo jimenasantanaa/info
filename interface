@@ -86,34 +86,38 @@ def on_click(event, g):
                     messagebox.showinfo("Segmento Agregado", f"Se ha agregado un segmento entre {origin_node.name} y {destination_node.name}.")
                 origin_node = None
                 destination_node = None
-                segment_mode = False  
+                segment_mode = False
                 show_graph(segment_mode)  # Mostrar el gráfico con el nuevo segmento
         else:
             selected_node = closest_node
             messagebox.showinfo("Nodo Seleccionado", f"Has seleccionado el nodo: {selected_node.name}")
 
-def show_graph(segment_mode=False):
+
+def show_graph():
     global actual
     esconder()
 
     if actual is None:
-        G = CreateGraph_1()
-        actual = G
+        actual = CreateGraph_1()
 
     fig, ax = plt.subplots(figsize=(5, 5))
-    Plot(actual)
+    Plot(actual)  # Asumiendo que Plot dibuja el gráfico
     ax.set_title("Gráfico Actual")
 
-    # Usar click handler adecuado
     fig.canvas.mpl_connect('button_press_event', lambda event: on_click(event, actual))
 
     canvas = FigureCanvasTkAgg(fig, master=graph_frame)
     canvas.get_tk_widget().pack(fill="both", expand=True)
     canvas.draw()
 
+def new_example_graph():
+    global actual
+    actual = CreateGraph_1()
+    show_graph()
+
 def add_segment_button():
     global segment_mode
-    segment_mode = True  
+    segment_mode = True
     messagebox.showinfo("Modo Segmento Activado", "Haz clic en un nodo para seleccionar el origen y luego en otro nodo para seleccionar el destino.")
 
 def load_graph():
@@ -166,8 +170,8 @@ def add_node():
 
         try:
             name = parts[0].strip()
-            x = float(parts[1].strip())  
-            y = float(parts[2].strip())  
+            x = float(parts[1].strip())
+            y = float(parts[2].strip())
 
             for node in actual.node:
                 if node.name == name:
@@ -220,7 +224,7 @@ def save_current_graph():
         SaveGraph(actual, filename)
         messagebox.showinfo("Guardar gráfico", f"El gráfico se ha guardado correctamente en {filename}")
 
-btn_show_graph = tk.Button(button_frame, text="Gráfico Ejemplo", command=show_graph)
+btn_show_graph = tk.Button(button_frame, text="Gráfico Ejemplo", command=new_example_graph)
 btn_show_graph.pack(side="left", padx=5)
 
 btn_load_graph = tk.Button(button_frame, text="Gráfico Inventado", command=load_graph)
